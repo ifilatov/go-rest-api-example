@@ -1,0 +1,19 @@
+sudo: required
+
+language: go
+
+go:
+  - 1.x
+
+services: 
+  - docker
+
+before_install: 
+  - go test -run TestHealthHandler
+
+script:
+  - docker build -t docker build -t hello-go .
+  - docker run -d -p 8080:8080 hello-go
+
+after_success:
+  - go test -run TestHealthE2E
