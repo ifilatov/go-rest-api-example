@@ -10,37 +10,55 @@ import (
 func health(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "It's alive!"}`))
+	_, err := w.Write([]byte(`{"message": "It's alive!"}`))
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "get called"}`))
+	_, err := w.Write([]byte(`{"message": "get called"}`))
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte(`{"message": "post called"}`))
+	_, err := w.Write([]byte(`{"message": "post called"}`))
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func put(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusAccepted)
-	w.Write([]byte(`{"message": "put called"}`))
+	_, err := w.Write([]byte(`{"message": "put called"}`))
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func delete(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "delete called"}`))
+	_, err := w.Write([]byte(`{"message": "delete called"}`))
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func notFound(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusNotFound)
-	w.Write([]byte(`{"message": "not found"}`))
+	_, err := w.Write([]byte(`{"message": "not found"}`))
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func main() {
