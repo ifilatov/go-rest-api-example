@@ -30,7 +30,7 @@ docker run -d -p 8080:8080
 ```
 
 ## Deployment
-* feature branch -> unit testing + static analysis/linting -> local(docker) env -> API testing ( -> bugfixes ) -> PR to main(develop)
+* feature branch -> unit testing + static analysis/linting ( -> bugfixes ) -> local(docker) env -> API testing ( -> bugfixes ) -> PR to main(develop)
 * main(develop) branch -> dev env -> performance testing + security testing ( -> bugfixes ) -> branch release
 * release branch -> staging env -> UAT testing ( -> bugfixes ) -> release candidate
 * release candidate -> canary env -> canary testing ( -> rollback ) -> PR's to master and main(develop)
