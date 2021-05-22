@@ -24,7 +24,10 @@ func getPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	// the best way to check for an empty Person
 	if person.ID == "" {
 		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(person)
+		err := json.NewEncoder(w).Encode(person)
+		if err != nil {
+			log.Printf("Write failed: %v", err)
+		}
 		return
 	}
 	w.WriteHeader(http.StatusOK)
@@ -62,7 +65,10 @@ func modifyPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	matched, people := api.ModifyPerson(person)
 	if !matched {
 		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(people)
+		err := json.NewEncoder(w).Encode(people)
+		if err != nil {
+			log.Printf("Write failed: %v", err)
+		}
 		return
 	}
 	w.WriteHeader(http.StatusOK)
@@ -77,7 +83,10 @@ func deletePersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	matched, people := api.DeletePerson(params["id"])
 	if !matched {
 		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(people)
+		err := json.NewEncoder(w).Encode(people)
+		if err != nil {
+			log.Printf("Write failed: %v", err)
+		}
 		return
 	}
 	w.WriteHeader(http.StatusOK)
