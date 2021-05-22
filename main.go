@@ -28,12 +28,18 @@ func getPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(person)
+	err := json.NewEncoder(w).Encode(person)
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func getPeopleEndpoint(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(api.GetPeople())
+	err := json.NewEncoder(w).Encode(api.GetPeople())
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func createPersonEndpoint(w http.ResponseWriter, req *http.Request) {
@@ -42,7 +48,10 @@ func createPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 	_ = json.NewDecoder(req.Body).Decode(&person)
 	person.ID = params["id"]
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(api.CreatePerson(person))
+	err := json.NewEncoder(w).Encode(api.CreatePerson(person))
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func modifyPersonEndpoint(w http.ResponseWriter, req *http.Request) {
@@ -57,7 +66,10 @@ func modifyPersonEndpoint(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(people)
+	err := json.NewEncoder(w).Encode(people)
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func deletePersonEndpoint(w http.ResponseWriter, req *http.Request) {
@@ -69,7 +81,10 @@ func deletePersonEndpoint(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(people)
+	err := json.NewEncoder(w).Encode(people)
+	if err != nil {
+		log.Printf("Write failed: %v", err)
+	}
 }
 
 func init() {
