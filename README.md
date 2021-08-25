@@ -1,5 +1,5 @@
 # hello-go
-go 'hello world' test task
+Go + gorilla/mux REST API example
 
 ## Prerequisites
 docker
